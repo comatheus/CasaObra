@@ -61,7 +61,7 @@ export default class Terrain extends Component {
   }
 
   subPageSelection() {
-    this.setState({ view: "product" });
+    this.setState({ view: "main" });
   }
 
   subPage() {
