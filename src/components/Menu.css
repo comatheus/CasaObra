@@ -1,0 +1,9 @@
+.menuItem {
+  border: 1px solid;
+  text-align: center;
+  font-size: 20px;
+  width: 100%;
+}
+.menuItem:hover {
+  border: 5px solid;
+}

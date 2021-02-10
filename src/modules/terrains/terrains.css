@@ -1,0 +1,14 @@
+.subPageMenu {
+  position: relative;
+  float: left;
+}
+
+.subPageItem {
+  border: 1px solid;
+  margin: 10px;
+  text-align: center;
+  font-size: 15px;
+}
+.subPageItem:hover {
+  border: 3px solid;
+}
