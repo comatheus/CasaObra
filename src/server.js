@@ -10,16 +10,16 @@ const port = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
-const collection = "CasaObra";
-const uri = process.env.ATLAS_URI + collection;
+const db = "CasaObra";
+const uri = process.env.ATLAS_URI + db;
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 const connection = mongoose.connection;
 connection.once("open", () => {
   console.log("MongoDB database connection estabilished successfully");
 });
 
-const companiesRouter = require("./modules/companies/company.route");
-app.use("/companies", companiesRouter);
+const terrainsRouter = require("./modules/terrains/terrains.route");
+app.use("/terrains", terrainsRouter);
 
 app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);
