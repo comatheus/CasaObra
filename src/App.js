@@ -10,29 +10,26 @@ import SignIn from "../src/pages/SignIn";
 
 const APP_URL = "http://localhost:5000/rooms/";
 
-
 export default class App extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
-      userLogged: true,
-    }
+      userLogged: true
+    };
   }
 
   render() {
     return (
       <Router>
         <div className="App">
-          {this.state.userLogged &&
-            <Route path="/" exact component = {Dash} handler={this.handler} />
-          }
-          {
-            <Route path="/" exact component = {SignIn} />
-          }
+          {this.state.userLogged ? (
+            <Route path="/" exact component={Dash} handler={this.handler} />
+          ) : (
+            <Route path="/" exact component={SignIn} />
+          )}
         </div>
       </Router>
-
     );
   }
 }

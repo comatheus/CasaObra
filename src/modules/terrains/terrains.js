@@ -3,7 +3,11 @@ import axios from "axios";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import "./terrains.css";
 
-const subPages = ["Meus Terrenos", "Cadastrar Terreno", "Estatísticas"];
+const subPages = [
+  ["Meus Terrenos", "products"],
+  ["Cadastrar Terreno", "new"],
+  ["Estatísticas", "stats"]
+];
 
 export default class Terrain extends Component {
   constructor(props) {
@@ -14,7 +18,7 @@ export default class Terrain extends Component {
     this.subPageSelection = this.subPageSelection.bind(this);
 
     this.state = {
-      view: "main",
+      subPage: "products",
       terrainSelected: "",
       showForm: false,
       showPanorama: false,
@@ -39,17 +43,17 @@ export default class Terrain extends Component {
     let menuButtons = subPages.map((subPageItem) => (
       <button
         onClick={this.subPageSelection}
-        value={subPageItem}
+        value={subPageItem[1]}
         className="subPageItem"
       >
-        {subPageItem}
+        {subPageItem[0]}
       </button>
     ));
     return menuButtons;
   }
 
-  terrainSelection() {
-    this.setState({ view: "product" });
+  terrainSelection(e) {
+    this.setState({ subPage: "products" });
     /*axios.get("http://localhost:5001/modules/terrains/"  + terrainSelected)
     .then(response => {
         this.setState({ terrainList: response.data, renderMaintenanceLog: true})
@@ -60,13 +64,14 @@ export default class Terrain extends Component {
         })*/
   }
 
-  subPageSelection() {
-    this.setState({ view: "main" });
+  subPageSelection(e) {
+    console.log(e.target.value);
+    this.setState({ subPage: e.target.value });
   }
 
   subPage() {
-    switch (this.state.view) {
-      case "main":
+    switch (this.state.subPage) {
+      case "products":
         return <p>Hello Darling</p>;
         break;
       default:
@@ -75,9 +80,9 @@ export default class Terrain extends Component {
 
   render() {
     return (
-      <div>
+      <div className="subPageMenu">
+        <div>{this.listSubPages()}</div>
         <div>{this.subPage()}</div>
-        <div className="subPageMenu">{this.listSubPages()}</div>
       </div>
     );
   }
